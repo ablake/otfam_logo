@@ -6,9 +6,12 @@ class TextPainter
   private static final String WEIRD_BANDS = (char)182+"ilcrow\nEro Guro\nPart"+(char)167;
   private static final int margin = 110;
   
-  PFont consolas = createFont("Consolas", 32);
+  //PFont consolas = createFont("Consolas", 32);
   PFont consolasBold = createFont("Consolas Bold", 32);
   PFont blackChancery = createFont("BlackChancery", 32);
+  //PFont streamster = createFont("Streamster", 32);
+  //PFont alien = createFont("SF Alien Encounters", 32);
+  PFont yu = createFont("Yu Gothic Light", 32);
   
   private final ImageGenerator ig;
   
@@ -23,11 +26,17 @@ class TextPainter
   PGraphics gTxt;
   PGraphics bandTxt;
   
-  final int leftX = 70;
-  final int topY = 120;
+  //final int leftX = 70;
+  //final int topY = 120;
+  
+  final int leftX = 55;
+  final int topY = 110;
   
   void setup()
   {
+    String[] fontList = PFont.list();
+    printArray(fontList);
+    
     gTxt = createGraphics(w, h);
     gTxt.beginDraw();
     gTxt.textFont(consolasBold);
@@ -48,15 +57,14 @@ class TextPainter
     bandTxt.text(BANDS, leftX, topY);
     bandTxt.endDraw();
     
-    textFont(blackChancery);
-    //textFont(consolasBold);
-    textSize(width/8);
-    textLeading(height/8);
+    textFont(yu);
+    textSize(width/4);
+    //textLeading(height/8);
     textAlign(LEFT);
   }
   
   void paintBands()
-  { //<>//
+  {
     for (int i = 0; i < 4; i++)
     {
       if (i == 0)
@@ -72,7 +80,7 @@ class TextPainter
     } 
   }
   
-  void paintBands(int numShadows, int dx, int dy, float r, float g, float b)
+  void paintShadowed(String text, int numShadows, int dx, int dy, float r, float g, float b)
   {
     final int rightX = leftX + (dx * numShadows);
     final int bottomY = topY + (dy * numShadows);
@@ -119,7 +127,7 @@ class TextPainter
       
       fill(red, green, blue);
       
-      text(WEIRD_BANDS, rightX - dx*i, bottomY - dy*i);
+      text(text, rightX - dx*i, bottomY - dy*i);
     }
   }
   

@@ -2,8 +2,8 @@ class ImageGenerator
 {
   PImage generateBackground()
   {
-    final int imgWidth = 425;
-    final int imgHeight = 550;
+    final int imgWidth = 500;
+    final int imgHeight = 500;
     
     PImage img = createImage(imgWidth, imgHeight, ARGB);
     

@@ -1,5 +1,4 @@
-// 8.5 x 11
-// 0.772727
+// Logo size: 500x500 
 
 PImage images[] = new PImage[50];
 ImageGenerator ig = new ImageGenerator();
@@ -8,7 +7,7 @@ TextPainter tp;
 
 void setup()
 {
-  size(800, 1000);
+  size(500, 500);
   
   for (int i = 0; i < 50; i++)
   {
@@ -21,54 +20,54 @@ void setup()
 
 boolean saved = false;
 int idx = 0;
-int t = 0;
+int frame = 0;
+int t = 60;
 void draw()
 { 
-  float factor = (float)millis() / 200f;
+  //float factor = (float)millis() / 200f;
   
+  float factor = (float)(frame * 40) / 200f;
+  
+  // Paint the background.
   image(images[idx], 0, 0);
-  translate(width/2, height/2 + height/5);
-  pc.powerChord(factor);
-  //pc.randomPowerChord();
-
-  resetMatrix();
-  translate(0, height - height/7);
   
+  // Draw the waves.
+  translate(0, 450);
   int inc = 10;
-  
-  for (int dy = 20; dy < 200; dy += inc)
+  for (int dy = 10; dy < 100; dy += inc)
   {
     pc.minorTriad(width, 0.25, factor);
-    translate(0, dy);
-    inc += 10;
+    translate(0, -dy);
+    inc += 5;
   }
-    
-  int r = 220;
-  int g = 12;
-  int b = 90;
   
   resetMatrix();
+  
+  // Draw the shape.
+  translate(width/2, height/2 + 20);
+  pc.powerChord(factor);
+  
+  resetMatrix();
+
+  tp.paintShadowed("OTFAM", 5, -6, 0, 220, 12, 90);
+  
   //tp.paintBands(5, -4, 0, r, g, b);
   //tp.paintBands(5, 4, -4, r, g, b);
-  tp.paintBands(4, 6, 6, r, g, b);
-  //tp.paintBands();
-  //tp.paintBandsBoring();
-  //tp.paintShadow();
-  //tp.paintBandsMasked();
-  //tp.paintBandsDull();
-  tp.paintVenue();
+  //tp.paintBands(4, 6, 6, r, g, b);
   
-  if (millis() >= t)
+  saveFrame("renders/anim/img-##.png");
+  //if (millis() >= t)
   {
-    //saveFrame("renders/anim/img-##.png");
+    saveFrame("renders/anim/img-##.png");
     
-    t += 60;
-    //idx++;
-    if (idx >= 42)
-    {
+    //t += 20;
+    idx++;
+    frame++;
+    if (idx >= 50)
       idx = 0;
-      //exit();
-    }
+    
+    if (frame >= 63)
+      exit();
   }
   
   if (!saved)

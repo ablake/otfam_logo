@@ -17,8 +17,10 @@ class Synth
   private final float E3 = 164.814f;
   
   private final float SCALE = 3;
-  private final float HSIZE = B2;
-  private final float YSIZE = E3;
+  //private final float HSIZE = B2;
+  //private final float YSIZE = E3;
+  private final float HSIZE = 90;
+  private final float YSIZE = 90;
    
   private final float Apery = 1.2020569;
   private final float Conway = 1.30357;
