@@ -93,7 +93,6 @@ class ImageGenerator
     int len = img.pixels.length;
     for(int i = 0; i < len; i++)
     {
-      //int numRows = len / w;
       int x = i % w;
       int y = (int)(((float)i / (float)len) * h);
       
@@ -102,11 +101,6 @@ class ImageGenerator
       
       float ascX = map(x, 0, w, 32, 92);
       float ascY = map(y, 0, h, 0, 128);
-      
-      //float r = (sin(hAngle) + 1) / 2 * 128;
-      //float r = descX;
-      //float g = ascX;
-      //float b = ascY;
       
       float r = descY - random(64);
       float b = ascX + random(64);

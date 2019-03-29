@@ -17,8 +17,6 @@ class Synth
   private final float E3 = 164.814f;
   
   private final float SCALE = 3;
-  //private final float HSIZE = B2;
-  //private final float YSIZE = E3;
   private final float HSIZE = 90;
   private final float YSIZE = 90;
    
@@ -49,9 +47,6 @@ class Synth
     
     for (float t = 1; t < 11011; t++)
     {
-      //float x = sinNote(t, E2, factor * randomZeroOrOne()) * sinNote(t, B2, factor * randomZeroOrOne()) * sinNote(t, E3, factor * randomZeroOrOne());
-      //float y = cosNote(t, E2, factor * randomZeroOrOne()) * cosNote(t, B2, factor * randomZeroOrOne()) * cosNote(t, E3, factor * randomZeroOrOne());
-      
       float x = sinNote(t, E2, factor) * sinNote(t, B2) * sinNote(t, E3);
       float y = cosNote(t, E2, factor) * cosNote(t, B2) * cosNote(t, E3);
       
@@ -67,7 +62,6 @@ class Synth
   
   void minorTriad(int w, float amp, float factor)
   {
-    //strokeWeight(random(1.5f) + 0.5);
     strokeWeight(2);
     
     float density = 1;

@@ -24,8 +24,6 @@ int frame = 0;
 int t = 60;
 void draw()
 { 
-  //float factor = (float)millis() / 200f;
-  
   float factor = (float)(frame * 40) / 200f;
   
   // Paint the background.
@@ -51,31 +49,29 @@ void draw()
 
   tp.paintShadowed("OTFAM", 5, -6, 0, 220, 12, 90);
   
-  //tp.paintBands(5, -4, 0, r, g, b);
-  //tp.paintBands(5, 4, -4, r, g, b);
-  //tp.paintBands(4, 6, 6, r, g, b);
-  
-  saveFrame("renders/anim/img-##.png");
-  //if (millis() >= t)
-  {
+  moveTimeForward(false);
+}
+
+// Pass true to save frames in order to make a gif.
+// This is reasonably easy to do with imagemagick:
+// >magick convert img-*.png a.gif
+private void moveTimeForward(boolean saveFrames)
+{
+  if (saveFrames)
     saveFrame("renders/anim/img-##.png");
     
-    //t += 20;
+  if (millis() >= t)
+  {
+    if (saveFrames)
+      saveFrame("renders/anim/img-##.png");
+    
+    t += 20;
     idx++;
     frame++;
     if (idx >= 50)
       idx = 0;
     
-    if (frame >= 63)
+    if (saveFrames && frame >= 63)
       exit();
   }
-  
-  if (!saved)
-  { 
-    save("renders/poster.png");
-    saved = true;
-  }
-  
-  //if (frameCount > 2)
-  //  delay(10000);
 }
